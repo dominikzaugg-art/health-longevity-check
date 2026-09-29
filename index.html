@@ -6,420 +6,255 @@
 <meta name="theme-color" content="#0B41CD">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Health Check">
-<title>Health & Longevity Check</title>
+<meta name="apple-mobile-web-app-title" content="Longevity">
+<title>Health & Longevity – Evidence Map</title>
 <style>
-:root{
-  --bg:#f5f7fb;--card:#ffffff;--text:#172033;--muted:#6b7686;--blue:#0B41CD;
-  --line:#dfe5ee;--good:#177d4d;--warn:#a86400;--danger:#b42318;--soft:#eef3ff
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  padding-bottom:calc(22px + env(safe-area-inset-bottom))
-}
-header{
-  background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;
-  padding-top:env(safe-area-inset-top)
-}
-.wrap{max-width:860px;margin:0 auto;padding:16px}
-.kicker{font-size:11px;letter-spacing:.09em;color:var(--blue);font-weight:800;text-transform:uppercase}
-h1{font-size:25px;line-height:1.1;margin:5px 0}
-h2{font-size:20px;margin:0 0 14px}
-p,li{line-height:1.45}
-.small{font-size:12px;color:var(--muted)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:16px;margin:14px 0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:680px){.grid{grid-template-columns:1fr}}
-label{display:block;font-size:13px;font-weight:750;margin:0 0 6px}
-input,select,textarea{
-  width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--text);
-  font:inherit;font-size:16px;padding:12px;min-height:46px;outline:none
-}
-input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(11,65,205,.08)}
-textarea{min-height:82px;resize:vertical}
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-button{
-  -webkit-appearance:none;appearance:none;border:0;border-radius:12px;padding:13px 16px;
-  font:inherit;font-weight:800;min-height:46px;cursor:pointer
-}
-.primary{background:var(--blue);color:#fff}
-.secondary{background:#eaf0ff;color:var(--blue)}
-.ghost{background:#f1f3f6;color:#394354}
-.sticky{
-  position:sticky;bottom:calc(8px + env(safe-area-inset-bottom));z-index:8;
-  background:rgba(245,247,251,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-  padding:10px;border-radius:15px;border:1px solid var(--line)
-}
-.hidden{display:none}
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
-@media(max-width:680px){.metrics{grid-template-columns:repeat(2,1fr)}}
-.metric{border:1px solid var(--line);border-radius:13px;padding:12px;min-height:92px}
-.metric .v{font-size:23px;font-weight:850;margin-top:4px}
-.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800}
-.good{background:#e6f4ec;color:var(--good)}
-.watch{background:#fff0d8;color:var(--warn)}
-.neutral{background:#edf1f6;color:#56606f}
-.flag{background:#fde8e6;color:var(--danger)}
-.note{border-left:4px solid var(--blue);background:#f3f6ff}
-.goodbox{border-left:4px solid var(--good)}
-.watchbox{border-left:4px solid var(--warn)}
-.alertbox{border-left:4px solid var(--danger);background:#fff7f6}
-ol,ul{padding-left:21px}
-.result-section{scroll-margin-top:95px}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
-th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
-.footer{padding:10px 0 28px;color:var(--muted);font-size:12px}
+:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#687487;--blue:#0b41cd;--line:#dfe5ee;--clinical:#117a4b;--best:#245cc7;--emerging:#7447c8;--experimental:#b26100;--weak:#6a7280;--danger:#b42318}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+header{background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.wrap{max-width:900px;margin:auto;padding:16px}.kicker{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:850;color:var(--blue)}
+h1{margin:5px 0 3px;font-size:25px;line-height:1.12}h2{font-size:20px;margin:0 0 14px}h3{font-size:16px;margin:0 0 7px}p,li{line-height:1.5}.small{font-size:12px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:16px;margin:14px 0}.note{background:#f1f5ff;border-left:4px solid var(--blue)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:13px;font-weight:760;margin-bottom:6px}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:white;color:var(--text);font:inherit;font-size:16px;padding:12px;min-height:46px;outline:none}
+textarea{min-height:82px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(11,65,205,.08)}
+.actions{display:flex;gap:9px;flex-wrap:wrap}button{border:0;border-radius:12px;padding:13px 16px;font:inherit;font-weight:800;min-height:46px;cursor:pointer;-webkit-appearance:none;appearance:none}
+.primary{background:var(--blue);color:white}.secondary{background:#e9efff;color:var(--blue)}.ghost{background:#eef1f5;color:#45505f}
+.sticky{position:sticky;bottom:calc(8px + env(safe-area-inset-bottom));z-index:12;background:rgba(244,247,251,.94);border:1px solid var(--line);border-radius:15px;padding:9px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.hidden{display:none!important}.checkgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:600px){.checkgrid{grid-template-columns:1fr}}
+.check{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--line);border-radius:12px;padding:11px;background:#fafbfc}.check input{width:19px;height:19px;min-height:0;margin:1px 0 0}.check label{margin:0;font-weight:650}
+.legend{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}@media(max-width:760px){.legend{grid-template-columns:1fr 1fr}}
+.badge{display:inline-block;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:850;line-height:1.2}.badge.clinical{background:#e4f5ec;color:var(--clinical)}.badge.best{background:#e8efff;color:var(--best)}.badge.emerging{background:#efe8ff;color:var(--emerging)}.badge.experimental{background:#fff0d8;color:var(--experimental)}.badge.weak{background:#edf0f4;color:var(--weak)}.badge.danger{background:#fde8e6;color:var(--danger)}
+.evidence-tile{border:1px solid var(--line);border-radius:13px;padding:11px;background:#fff}.result-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}@media(max-width:700px){.metrics{grid-template-columns:1fr 1fr}}
+.metric{border:1px solid var(--line);border-radius:13px;padding:12px}.metric .value{font-size:22px;font-weight:850;margin:3px 0}.metric .context{font-size:11px;color:var(--muted)}
+.lens,.science-card{border:1px solid var(--line);border-radius:15px;padding:14px;margin:10px 0;background:#fff}.lens-title{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.lens p,.science-card p{margin:8px 0}
+.source-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.source-links a{color:var(--blue);text-decoration:none;font-size:12px;font-weight:700;background:#f1f5ff;border-radius:999px;padding:6px 9px}
+.callout{border-radius:13px;padding:12px;background:#f8fafc;border:1px solid var(--line);margin-top:10px}.alert{border-left:4px solid var(--danger);background:#fff6f5}
+.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:10px 7px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+details{border:1px solid var(--line);border-radius:13px;padding:12px;margin:9px 0;background:#fff}summary{font-weight:780;cursor:pointer}.footer{font-size:12px;color:var(--muted);padding:8px 0 28px}
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <div class="kicker">Personal Health Check</div>
-    <h1>Health & Longevity</h1>
-    <div class="small">Privater Check für Alltag, Training, Schlaf und Supplemente.</div>
-  </div>
-</header>
-
+<header><div class="wrap"><div class="kicker">Evidence-based longevity</div><h1>Health & Longevity</h1><div class="small">Clinical Standard → Best Practice → Emerging Science → Experimental</div></div></header>
 <main class="wrap">
 
-<div class="card note">
-  <strong>Privat by design:</strong> Die Analyse läuft vollständig auf deinem Gerät.
-  Es werden keine Gesundheitsdaten an einen Server gesendet. Speichern ist optional und erfolgt nur lokal in diesem Browser.
-</div>
+<div class="card note"><strong>Wie diese Version arbeitet:</strong> Die Analyse läuft lokal im Browser und nutzt eine kuratierte, fest eingebaute Evidenzbibliothek. Sie greift <strong>nicht live auf das Internet oder ChatGPT zu</strong>. Quellen und Evidenzstatus wurden für Version 2 bis <strong>September 2026</strong> geprüft.</div>
 
 <div class="card">
-  <h2>1 · Basis</h2>
-  <div class="grid">
-    <div><label>Alter</label><input id="age" inputmode="numeric" type="number" min="18" max="100" placeholder="z. B. 53"></div>
-    <div><label>Geschlecht</label><select id="sex"><option value="">Bitte wählen</option><option value="m">männlich</option><option value="f">weiblich</option><option value="x">divers / keine Angabe</option></select></div>
-    <div><label>Grösse (cm)</label><input id="height" inputmode="decimal" type="number" step="0.1" placeholder="z. B. 176"></div>
-    <div><label>Gewicht (kg)</label><input id="weight" inputmode="decimal" type="number" step="0.1" placeholder="z. B. 72"></div>
-    <div><label>Taillenumfang (optional)</label><input id="waist" inputmode="decimal" type="number" step="0.1" placeholder="cm"></div>
-    <div><label>Bewegung im Alltag</label><select id="activity"><option value="">Bitte wählen</option><option>überwiegend sitzend</option><option>gemischt</option><option>viel auf den Beinen</option><option>körperlich aktiv</option></select></div>
-  </div>
-  <div style="margin-top:12px"><label>Wichtigste Ziele</label><textarea id="goals" placeholder="z. B. fit älter werden, besser schlafen, Muskelmasse aufbauen, 10 km schneller laufen"></textarea></div>
-  <div style="margin-top:12px"><label>Was möchtest du mit 60, 70 und 80 noch gut können?</label><textarea id="future" placeholder="z. B. wandern, reisen, klettern, Halbmarathon, mit Enkeln spielen"></textarea></div>
+<h2>Die fünf Evidenzebenen</h2>
+<div class="legend">
+<div class="evidence-tile"><span class="badge clinical">Clinical Standard</span><div class="small" style="margin-top:7px">Guidelines / robuste Human-Evidenz</div></div>
+<div class="evidence-tile"><span class="badge best">Best Current Practice</span><div class="small" style="margin-top:7px">anerkannt, aber kontextabhängig</div></div>
+<div class="evidence-tile"><span class="badge emerging">Emerging Human Science</span><div class="small" style="margin-top:7px">erste gute Human-Daten</div></div>
+<div class="evidence-tile"><span class="badge experimental">Experimental</span><div class="small" style="margin-top:7px">interessant, Nutzen nicht bewiesen</div></div>
+<div class="evidence-tile"><span class="badge weak">Insufficient Evidence</span><div class="small" style="margin-top:7px">derzeit nicht priorisieren</div></div>
+</div></div>
+
+<div class="card"><h2>1 · Basis & Ziele</h2><div class="grid">
+<div><label>Alter</label><input id="age" inputmode="numeric" type="number" min="18" max="100" placeholder="z. B. 53"></div>
+<div><label>Geschlecht</label><select id="sex"><option value="">Bitte wählen</option><option value="m">männlich</option><option value="f">weiblich</option><option value="x">divers / keine Angabe</option></select></div>
+<div><label>Grösse (cm)</label><input id="height" inputmode="decimal" type="number" step="0.1" placeholder="z. B. 186"></div>
+<div><label>Gewicht (kg)</label><input id="weight" inputmode="decimal" type="number" step="0.1" placeholder="z. B. 83"></div>
+<div><label>Taillenumfang (cm, optional)</label><input id="waist" inputmode="decimal" type="number" step="0.1"></div>
+<div><label>Bewegung im Alltag</label><select id="activity"><option value="">Bitte wählen</option><option>überwiegend sitzend</option><option>gemischt</option><option>viel auf den Beinen</option><option>körperlich aktiv</option></select></div>
+</div><div style="margin-top:12px"><label>Wichtigste Ziele</label><textarea id="goals" placeholder="z. B. Gedächtnis fit, VO₂max verbessern, Muskelmasse, besser schlafen"></textarea></div><div style="margin-top:12px"><label>Was möchtest du mit 60, 70 und 80 noch können?</label><textarea id="future" placeholder="z. B. Halbmarathon, wandern, klettern, reisen, selbständig bleiben"></textarea></div></div>
+
+<div class="card"><h2>2 · Gesundheit</h2><div class="grid">
+<div><label>Bekannte Erkrankungen</label><textarea id="conditions" placeholder="oder „keine“"></textarea></div>
+<div><label>Medikamente</label><textarea id="meds" placeholder="inkl. Dosis, falls bekannt"></textarea></div>
+<div><label>Aktuelle Beschwerden / Schmerzen</label><textarea id="symptoms" placeholder="oder „keine“"></textarea></div>
+<div><label>Familiengeschichte</label><textarea id="family" placeholder="Herzinfarkt, Diabetes, Demenz, Krebs, Osteoporose ..."></textarea></div>
+<div><label>Blutdruck, falls bekannt</label><input id="bp" placeholder="z. B. 125/78"></div>
+<div><label>Bekannte auffällige Laborwerte</label><textarea id="labs" placeholder="z. B. LDL erhöht / keine"></textarea></div>
+</div></div>
+
+<div class="card"><h2>3 · Garmin / Wearable</h2><div class="grid">
+<div><label>Gerät</label><input id="device" placeholder="z. B. Garmin Epix"></div>
+<div><label>VO₂max</label><input id="vo2" inputmode="decimal" type="number" step="0.1"></div>
+<div><label>Ruhepuls (bpm)</label><input id="rhr" inputmode="numeric" type="number"></div>
+<div><label>HRV / HRV Status</label><input id="hrv" placeholder="z. B. 43 ms / balanced"></div>
+<div><label>Schlafdauer Ø (h)</label><input id="sleep" inputmode="decimal" type="number" step="0.1"></div>
+<div><label>Sleep Score Ø</label><input id="sleepscore" inputmode="numeric" type="number" min="0" max="100"></div>
+<div><label>Schritte Ø / Tag</label><input id="steps" inputmode="numeric" type="number"></div>
+<div><label>Training Status / Load</label><input id="trainingstatus" placeholder="z. B. productive"></div>
+</div><div style="margin-top:12px"><label>Trend der letzten Monate</label><textarea id="trends" placeholder="z. B. VO₂max +2, HRV 39 → 55 → 43"></textarea></div></div>
+
+<div class="card"><h2>4 · Training</h2><div class="grid">
+<div><label>Krafttraining / Woche</label><input id="strength" inputmode="numeric" type="number" min="0" max="14"></div>
+<div><label>Ausdauertraining / Woche</label><input id="cardio" inputmode="numeric" type="number" min="0" max="14"></div>
+<div><label>Typische Laufdistanz / Pace</label><input id="run" placeholder="z. B. 5 km / 5:30 min/km"></div>
+<div><label>Zeitbudget / Woche</label><input id="time" placeholder="z. B. 4 Stunden"></div>
+</div><div style="margin-top:12px"><label>Sportarten</label><textarea id="sports" placeholder="Laufen, Velo, Krafttraining ..."></textarea></div><div style="margin-top:12px"><label>Verletzungen / Einschränkungen</label><textarea id="injuries" placeholder="oder „keine“"></textarea></div></div>
+
+<div class="card"><h2>5 · Ernährung & Supplemente</h2><div class="grid">
+<div><label>Typischer Tag / Essmuster</label><textarea id="food" placeholder="Mahlzeiten, Snacks, Frühstück ja/nein ..."></textarea></div>
+<div><label>Proteinquellen</label><textarea id="protein" placeholder="Eier, Joghurt, Fisch, Fleisch, Hülsenfrüchte, Shake ..."></textarea></div>
+<div><label>Gemüse / Früchte</label><input id="plants" placeholder="z. B. 4 Portionen/Tag"></div>
+<div><label>Alkohol</label><input id="alcohol" placeholder="z. B. 4 Bier/Woche"></div>
+<div><label>Süsses / stark verarbeitete Lebensmittel</label><input id="ultra" placeholder="selten / täglich"></div>
+<div><label>Essenszeiten</label><input id="mealtimes" placeholder="z. B. 12:00 / 19:00"></div>
+</div><div style="margin-top:12px"><label>Supplemente inkl. Dosis</label><textarea id="supps" placeholder="z. B. Creatin 4 g, Protein 40 g, Omega-3, Vitamin D3 ..."></textarea></div></div>
+
+<div class="card"><h2>6 · Schlaf & Lifestyle</h2><div class="grid">
+<div><label>Schlafenszeit / Aufstehzeit</label><input id="sleeptimes" placeholder="z. B. 23:15 / 06:30"></div>
+<div><label>Schlafqualität</label><select id="sleepquality"><option value="">Bitte wählen</option><option>sehr gut</option><option>gut</option><option>mittel</option><option>schlecht</option></select></div>
+<div><label>Schnarchen / häufiges Aufwachen</label><input id="snoring" placeholder="nein / manchmal / ja"></div>
+<div><label>Stress</label><select id="stress"><option value="">Bitte wählen</option><option>niedrig</option><option>mittel</option><option>hoch</option><option>sehr hoch</option></select></div>
+<div><label>Kaffee</label><input id="coffee" placeholder="z. B. 3 Tassen, letzte um 14 Uhr"></div>
+<div><label>Nikotin</label><input id="nicotine" placeholder="nein / ja"></div>
+</div></div>
+
+<div class="card"><h2>7 · Dein Science Radar <span class="small">(optional)</span></h2><p class="small">Welche Themen interessieren dich? Das verändert nicht die medizinische Basis, sondern nur welche Forschungsfelder zusätzlich gezeigt werden.</p>
+<div class="checkgrid">
+<div class="check"><input id="interestBrain" type="checkbox"><label for="interestBrain">Gehirn / Kognition</label></div>
+<div class="check"><input id="interestMuscle" type="checkbox"><label for="interestMuscle">Muskel / Power / Healthy Ageing</label></div>
+<div class="check"><input id="interestFasting" type="checkbox"><label for="interestFasting">Fasten / Time-Restricted Eating</label></div>
+<div class="check"><input id="interestCGM" type="checkbox"><label for="interestCGM">CGM / Glukose-Biofeedback</label></div>
+<div class="check"><input id="interestNAD" type="checkbox"><label for="interestNAD">NAD / NR / NMN</label></div>
+<div class="check"><input id="interestRapamycin" type="checkbox"><label for="interestRapamycin">Rapamycin / mTOR</label></div>
+</div></div>
+
+<div class="sticky"><div class="actions"><button id="analyzeBtn" class="primary">Evidence Map erstellen</button><button id="saveBtn" class="secondary">Lokal speichern</button><button id="clearBtn" class="ghost">Löschen</button></div></div>
+
+<section id="results" class="hidden">
+<div class="card"><div class="result-head"><div><div class="kicker">Personal evidence map</div><h2 style="margin-top:4px">Dein Health & Longevity Snapshot</h2></div><span class="badge best">Version 2</span></div>
+<div class="metrics"><div class="metric"><div class="small">BMI</div><div id="bmiOut" class="value">–</div><div class="context">Traditional screening metric</div></div><div class="metric"><div class="small">Waist / Height</div><div id="whrOut" class="value">–</div><div class="context">falls Taille eingegeben</div></div><div class="metric"><div class="small">VO₂max</div><div id="vo2Out" class="value">–</div><div class="context">Wearable-Schätzung</div></div><div class="metric"><div class="small">Schlaf</div><div id="sleepOut" class="value">–</div><div class="context">Ø Stunden</div></div></div></div>
+
+<div id="urgentCard" class="card alert hidden"><h2>Medizinisch priorisieren</h2><ul id="urgentList"></ul></div>
+<div class="card"><h2>1 · Clinical Standard</h2><p class="small">Was mit heutiger klinischer Evidenz und Guidelines am klarsten abgestützt ist.</p><div id="clinicalResults"></div></div>
+<div class="card"><h2>2 · Best Current Practice</h2><p class="small">Bereiche, in denen moderne Präventions-, Sport- oder Adipositasmedizin differenzierter ist als einfache Grenzwerte.</p><div id="bestResults"></div></div>
+<div class="card"><h2>3 · Emerging Longevity Science</h2><p class="small">Themen mit ernstzunehmenden Human-Daten, aber noch ohne Status einer etablierten Longevity-Intervention.</p><div id="emergingResults"></div></div>
+<div class="card"><h2>4 · Experimental / Watchlist</h2><p class="small">Wissenschaftlich interessant. Kein Signal zur Selbstmedikation.</p><div id="experimentalResults"></div></div>
+<div class="card"><h2>5 · 12-Wochen-Prioritäten</h2><ol id="planList"></ol></div>
+<div class="card"><h2>Supplement Evidence Map</h2><div id="supplementResult"></div></div>
+<div class="card"><h2>Was ich nicht überinterpretieren würde</h2><ul id="dontOverinterpret"></ul></div>
+<div class="card"><h2>Live-Analyse mit aktueller Forschung</h2><p>Diese lokale App aktualisiert ihre Evidenz nicht automatisch. Für eine vertiefte Analyse kann sie dir aber einen strukturierten Prompt erzeugen, den du bewusst in ChatGPT verwenden kannst.</p><div class="actions"><button id="copyPromptBtn" class="primary">Analyse-Prompt kopieren</button><button id="shareBtn" class="secondary">Ergebnis teilen</button></div></div>
+<div class="card note"><strong>Grenzen:</strong> Diese App ist Gesundheitsinformation, keine Diagnose. Sie berücksichtigt keine vollständige Krankengeschichte, Untersuchung oder alle möglichen Medikamenteninteraktionen. Bei medizinischen Auffälligkeiten ist ärztliche Einordnung wichtiger als Longevity-Optimierung.</div>
+
+<div class="card"><h2>Evidenzbibliothek & Quellen</h2><p class="small">Letzte kuratierte Prüfung: September 2026. Die Links führen zu Fachgesellschaften oder PubMed.</p>
+<details><summary>Körperzusammensetzung / BMI</summary><p class="small">EASO 2024/25: moderne Adipositasdiagnostik soll über BMI hinausgehen und Anthropometrie, Fettverteilung und klinische Auswirkungen einbeziehen.</p><div class="source-links"><a href="https://easo.org/cpd/a-new-approach-to-obesity-diagnosis-staging-and-management/" target="_blank" rel="noopener">EASO framework</a></div></details>
+<details><summary>Bewegung / Krafttraining</summary><p class="small">WHO: 150–300 min moderate oder 75–150 min intensive Ausdauer pro Woche; Muskelkräftigung an ≥2 Tagen/Woche.</p><div class="source-links"><a href="https://www.who.int/europe/news-room/fact-sheets/item/physical-activity" target="_blank" rel="noopener">WHO physical activity</a></div></details>
+<details><summary>Schlaf</summary><p class="small">AASM/SRS-Konsensus: gesunde Erwachsene sollten regelmässig ≥7 h schlafen.</p><div class="source-links"><a href="https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/" target="_blank" rel="noopener">AASM / SRS</a></div></details>
+<details><summary>Creatin & Kognition</summary><p class="small">2024 Meta-Analyse fand positive Signale u. a. für Gedächtnis; ein anderer systematischer Review desselben Jahres war deutlich skeptischer. Daher: Emerging, nicht etabliert.</p><div class="source-links"><a href="https://pubmed.ncbi.nlm.nih.gov/39070254/" target="_blank" rel="noopener">Meta-analysis 2024</a><a href="https://pubmed.ncbi.nlm.nih.gov/38582412/" target="_blank" rel="noopener">Critical review 2024</a></div></details>
+<details><summary>Muscle Power</summary><p class="small">Power-Training ist für funktionelle Leistungsfähigkeit im Alter wissenschaftlich interessant; die optimale Integration ist individueller als die Standardempfehlung zu Krafttraining.</p><div class="source-links"><a href="https://pubmed.ncbi.nlm.nih.gov/35953775/" target="_blank" rel="noopener">Systematic review</a><a href="https://pubmed.ncbi.nlm.nih.gov/42282453/" target="_blank" rel="noopener">Meta-analysis 2026</a></div></details>
+<details><summary>NAD / NR / NMN</summary><p class="small">Humanstudien zeigen biologische Zielerreichung und meist gute Kurzzeitverträglichkeit; relevante Healthspan-Effekte sind heterogen bzw. unklar.</p><div class="source-links"><a href="https://pubmed.ncbi.nlm.nih.gov/41655607/" target="_blank" rel="noopener">Systematic review 2026</a><a href="https://pubmed.ncbi.nlm.nih.gov/40275690/" target="_blank" rel="noopener">Muscle meta-analysis</a></div></details>
+<details><summary>Rapamycin</summary><p class="small">Starke präklinische Geroscience, wachsende Human-Daten, aber kein Beweis für Lebensverlängerung gesunder Menschen. Verschreibungspflichtig; keine Selbstmedikation.</p><div class="source-links"><a href="https://pubmed.ncbi.nlm.nih.gov/38310895/" target="_blank" rel="noopener">Systematic review</a><a href="https://pubmed.ncbi.nlm.nih.gov/40188830/" target="_blank" rel="noopener">PEARL RCT</a><a href="https://pubmed.ncbi.nlm.nih.gov/40778880/" target="_blank" rel="noopener">Clinical evidence review</a></div></details>
+<details><summary>CGM ohne Diabetes</summary><p class="small">Bei gesunden normoglykämischen Personen ist der klinische Zusatznutzen nicht überzeugend belegt; als Biofeedback kann es situativ interessant sein.</p><div class="source-links"><a href="https://pubmed.ncbi.nlm.nih.gov/41588451/" target="_blank" rel="noopener">Systematic review 2026</a><a href="https://pubmed.ncbi.nlm.nih.gov/42545686/" target="_blank" rel="noopener">Review 2026</a></div></details>
+<details><summary>Time-Restricted Eating</summary><p class="small">RCT-Meta-Analysen zeigen modest positive metabolische Effekte in verschiedenen Populationen. Ob Timing selbst oder geringere Energiezufuhr den Nutzen treibt, ist kontextabhängig.</p><div class="source-links"><a href="https://pubmed.ncbi.nlm.nih.gov/41586347/" target="_blank" rel="noopener">Network meta-analysis</a><a href="https://pubmed.ncbi.nlm.nih.gov/41346676/" target="_blank" rel="noopener">RCT meta-analysis</a></div></details>
 </div>
-
-<div class="card">
-  <h2>2 · Gesundheit</h2>
-  <div class="grid">
-    <div><label>Bekannte Erkrankungen</label><textarea id="conditions" placeholder="oder „keine“"></textarea></div>
-    <div><label>Medikamente</label><textarea id="meds" placeholder="inkl. Dosis, falls bekannt"></textarea></div>
-    <div><label>Aktuelle Beschwerden / Schmerzen</label><textarea id="symptoms" placeholder="oder „keine“"></textarea></div>
-    <div><label>Familiengeschichte</label><textarea id="family" placeholder="z. B. Herzinfarkt, Diabetes, Demenz, Krebs, Osteoporose"></textarea></div>
-    <div><label>Blutdruck, falls bekannt</label><input id="bp" placeholder="z. B. 125/78"></div>
-    <div><label>Bekannte auffällige Laborwerte</label><textarea id="labs" placeholder="z. B. LDL erhöht / keine"></textarea></div>
-  </div>
-</div>
-
-<div class="card">
-  <h2>3 · Garmin / Wearable</h2>
-  <div class="grid">
-    <div><label>Gerät</label><input id="device" placeholder="z. B. Garmin Epix / Apple Watch"></div>
-    <div><label>VO₂max</label><input id="vo2" inputmode="decimal" type="number" step="0.1"></div>
-    <div><label>Ruhepuls</label><input id="rhr" inputmode="numeric" type="number" placeholder="bpm"></div>
-    <div><label>HRV / HRV Status</label><input id="hrv" placeholder="z. B. 43 ms / balanced"></div>
-    <div><label>Schlafdauer Ø</label><input id="sleep" inputmode="decimal" type="number" step="0.1" placeholder="Stunden"></div>
-    <div><label>Sleep Score Ø</label><input id="sleepscore" inputmode="numeric" type="number" min="0" max="100"></div>
-    <div><label>Schritte Ø / Tag</label><input id="steps" inputmode="numeric" type="number"></div>
-    <div><label>Training Status / Load</label><input id="trainingstatus" placeholder="z. B. productive"></div>
-  </div>
-  <div style="margin-top:12px"><label>Trend der letzten Monate</label><textarea id="trends" placeholder="z. B. VO₂max +2, HRV stabil, Schlaf schlechter"></textarea></div>
-</div>
-
-<div class="card">
-  <h2>4 · Training</h2>
-  <div class="grid">
-    <div><label>Krafttraining / Woche</label><input id="strength" inputmode="numeric" type="number" min="0" max="14"></div>
-    <div><label>Ausdauer / Woche</label><input id="cardio" inputmode="numeric" type="number" min="0" max="14"></div>
-    <div><label>Typische Laufdistanz / Pace</label><input id="run" placeholder="z. B. 5 km / 5:30 min/km"></div>
-    <div><label>Zeitbudget / Woche</label><input id="time" placeholder="z. B. 4 Stunden"></div>
-  </div>
-  <div style="margin-top:12px"><label>Sportarten</label><textarea id="sports" placeholder="z. B. Laufen, Velo, Gym"></textarea></div>
-  <div style="margin-top:12px"><label>Verletzungen / Einschränkungen</label><textarea id="injuries" placeholder="oder „keine“"></textarea></div>
-</div>
-
-<div class="card">
-  <h2>5 · Ernährung</h2>
-  <div class="grid">
-    <div><label>Typischer Tag</label><textarea id="food" placeholder="Frühstück, Mittag, Abendessen, Snacks"></textarea></div>
-    <div><label>Proteinquellen</label><textarea id="protein" placeholder="z. B. Eier, Joghurt, Fisch, Fleisch, Hülsenfrüchte, Shake"></textarea></div>
-    <div><label>Gemüse / Früchte</label><input id="plants" placeholder="z. B. 4 Portionen/Tag"></div>
-    <div><label>Alkohol</label><input id="alcohol" placeholder="z. B. 2 Gläser/Woche"></div>
-    <div><label>Süsses / stark verarbeitete Lebensmittel</label><input id="ultra" placeholder="selten / täglich"></div>
-    <div><label>Essenszeiten</label><input id="mealtimes" placeholder="z. B. 07 / 12 / 19 Uhr"></div>
-  </div>
-</div>
-
-<div class="card">
-  <h2>6 · Supplemente</h2>
-  <label>Was nimmst du aktuell?</label>
-  <textarea id="supps" placeholder="z. B. Creatin 5 g täglich, Vitamin D 1000 IU, Omega-3 ..."></textarea>
-</div>
-
-<div class="card">
-  <h2>7 · Schlaf & Lifestyle</h2>
-  <div class="grid">
-    <div><label>Schlafenszeit / Aufstehzeit</label><input id="sleeptimes" placeholder="z. B. 23:00 / 06:30"></div>
-    <div><label>Schlafqualität</label><select id="sleepquality"><option value="">Bitte wählen</option><option>sehr gut</option><option>gut</option><option>mittel</option><option>schlecht</option></select></div>
-    <div><label>Schnarchen / häufiges Aufwachen</label><input id="snoring" placeholder="nein / manchmal / ja"></div>
-    <div><label>Stress</label><select id="stress"><option value="">Bitte wählen</option><option>niedrig</option><option>mittel</option><option>hoch</option><option>sehr hoch</option></select></div>
-    <div><label>Kaffee</label><input id="coffee" placeholder="z. B. 3 Tassen, letzte um 14 Uhr"></div>
-    <div><label>Nikotin</label><input id="nicotine" placeholder="nein / ja"></div>
-  </div>
-</div>
-
-<div class="sticky">
-  <div class="actions">
-    <button class="primary" id="analyzeBtn">Analyse erstellen</button>
-    <button class="secondary" id="saveBtn">Lokal speichern</button>
-    <button class="ghost" id="clearBtn">Löschen</button>
-  </div>
-</div>
-
-<section id="results" class="hidden result-section">
-  <div class="card">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-      <h2 style="margin:0">Health & Longevity Snapshot</h2>
-      <span id="badge" class="pill neutral">Übersicht</span>
-    </div>
-    <div class="metrics" style="margin-top:14px">
-      <div class="metric"><div class="small">BMI</div><div class="v" id="bmiOut">–</div><div class="small">grober Indikator</div></div>
-      <div class="metric"><div class="small">VO₂max</div><div class="v" id="vo2Out">–</div><div class="small">Wearable-Schätzung</div></div>
-      <div class="metric"><div class="small">Schlaf</div><div class="v" id="sleepOut">–</div><div class="small">Ø Stunden</div></div>
-      <div class="metric"><div class="small">Schritte</div><div class="v" id="stepsOut">–</div><div class="small">Ø / Tag</div></div>
-    </div>
-  </div>
-
-  <div id="urgentBox" class="card alertbox hidden">
-    <h2>Bitte medizinisch einordnen</h2>
-    <ul id="urgentList"></ul>
-  </div>
-
-  <div class="card goodbox">
-    <h2>Was bereits gut aussieht</h2>
-    <ul id="goodList"></ul>
-  </div>
-
-  <div class="card watchbox">
-    <h2>Die wichtigsten Hebel</h2>
-    <ol id="leverList"></ol>
-  </div>
-
-  <div class="card">
-    <h2>12-Wochen-Fokus</h2>
-    <ul id="planList"></ul>
-  </div>
-
-  <div class="card">
-    <h2>Supplement-Check</h2>
-    <div id="supplementResult" class="small">Keine Supplemente eingegeben.</div>
-  </div>
-
-  <div class="card">
-    <h2>Routine-Check</h2>
-    <ul id="medicalList"></ul>
-  </div>
-
-  <div class="card note">
-    <strong>Wichtig:</strong> Diese Seite liefert allgemeine Gesundheitsinformation und keine Diagnose oder individuelle ärztliche Behandlung.
-    Wearable-Werte sind Schätzungen. Bei neuen, starken oder anhaltenden Beschwerden, auffälligem Blutdruck oder relevanten Erkrankungen bitte medizinisch abklären.
-  </div>
-
-  <div class="card">
-    <h2>Ergebnis teilen</h2>
-    <div class="actions">
-      <button class="primary" id="shareBtn">Teilen</button>
-      <button class="secondary" id="copyBtn">Text kopieren</button>
-    </div>
-  </div>
 </section>
-
-<div class="footer">
-  Health & Longevity Check · lokale Browser-Auswertung · keine Datenübertragung
-</div>
+<div class="footer">Health & Longevity Evidence Map · v2 · lokale Auswertung · keine Datenübertragung</div>
 </main>
 
 <script>
-const ids=["age","sex","height","weight","waist","activity","goals","future","conditions","meds","symptoms","family","bp","labs",
-"device","vo2","rhr","hrv","sleep","sleepscore","steps","trainingstatus","trends","strength","cardio","run","time","sports","injuries",
-"food","protein","plants","alcohol","ultra","mealtimes","supps","sleeptimes","sleepquality","snoring","stress","coffee","nicotine"];
-
-const $=id=>document.getElementById(id);
-const v=id=>($(id)?.value||"").trim();
-const n=id=>parseFloat(v(id));
-const low=s=>(s||"").toLowerCase();
-const add=(el,t)=>{const li=document.createElement("li");li.textContent=t;el.appendChild(li)};
-
-function parseBP(){
-  const m=v("bp").match(/(\d{2,3})\D+(\d{2,3})/);
-  return m?[+m[1],+m[2]]:null;
-}
-
-function supplementRows(text){
-  if(!text) return '<span class="small">Keine Supplemente eingegeben.</span>';
-  const t=low(text), rows=[];
-  if(t.includes("creat")) rows.push(["Creatin","KEEP / meist sinnvoll","3–5 g/Tag Creatin-Monohydrat ist eine typische Erhaltungsdosis; besonders passend bei Krafttraining. Bei bekannter Nierenerkrankung zuerst ärztlich klären."]);
-  if(t.includes("protein")) rows.push(["Protein","KEEP – falls nötig","Gesamtprotein und Verteilung über den Tag sind wichtiger als ein bestimmtes Produkt."]);
-  if(t.includes("omega")) rows.push(["Omega-3","CHECK","EPA+DHA-Menge und Fischkonsum prüfen. Hohe Dosen nicht automatisch als besser ansehen."]);
-  if(t.includes("vitamin d")||t.includes("d3")) rows.push(["Vitamin D","CHECK","Dosis kennen; langfristige Hochdosis ohne klaren Grund vermeiden."]);
-  if(t.includes("magnesium")) rows.push(["Magnesium","OPTIONAL","Nicht obligatorisch für Longevity. Sinn kann von Ernährung, Beschwerden und medizinischer Situation abhängen."]);
-  if(!rows.length) rows.push(["Eingegebene Supplemente","CHECK","Dosis, Grund, Medikamente und Vorerkrankungen berücksichtigen; pauschale Empfehlungen wären nicht verlässlich."]);
-  return `<table><tr><th>Supplement</th><th>Einschätzung</th><th>Kommentar</th></tr>${rows.map(r=>`<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table>`;
-}
+const ids=["age","sex","height","weight","waist","activity","goals","future","conditions","meds","symptoms","family","bp","labs","device","vo2","rhr","hrv","sleep","sleepscore","steps","trainingstatus","trends","strength","cardio","run","time","sports","injuries","food","protein","plants","alcohol","ultra","mealtimes","supps","sleeptimes","sleepquality","snoring","stress","coffee","nicotine","interestBrain","interestMuscle","interestFasting","interestCGM","interestNAD","interestRapamycin"];
+const $=id=>document.getElementById(id);const val=id=>{const e=$(id);return !e?"":e.type==="checkbox"?e.checked:e.value.trim()};const num=id=>parseFloat(val(id));const low=s=>(s||"").toLowerCase();const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+function links(items){return `<div class="source-links">${items.map(x=>`<a href="${x[1]}" target="_blank" rel="noopener">${esc(x[0])}</a>`).join("")}</div>`}
+function card(level,title,body,action="",sources=[]){const n={clinical:["Clinical Standard","clinical"],best:["Best Current Practice","best"],emerging:["Emerging Human Science","emerging"],experimental:["Experimental / Watchlist","experimental"],weak:["Insufficient Evidence","weak"]};const [label,cls]=n[level];return `<div class="lens"><div class="lens-title"><h3>${esc(title)}</h3><span class="badge ${cls}">${label}</span></div><p>${body}</p>${action?`<div class="callout"><strong>Praktisch:</strong> ${action}</div>`:""}${sources.length?links(sources):""}</div>`}
+function parseBP(){const m=val("bp").match(/(\d{2,3})\D+(\d{2,3})/);return m?[+m[1],+m[2]]:null}
+function addList(el,t){const li=document.createElement("li");li.textContent=t;el.appendChild(li)}
 
 function analyze(){
-  const age=n("age"),h=n("height"),w=n("weight"),waist=n("waist"),vo2=n("vo2"),sleep=n("sleep"),steps=n("steps"),
-        strength=n("strength"),cardio=n("cardio"),rhr=n("rhr"),bmi=(h>0&&w>0)?w/Math.pow(h/100,2):null;
+const age=num("age"),h=num("height"),w=num("weight"),waist=num("waist"),vo2=num("vo2"),sleep=num("sleep"),steps=num("steps"),strength=num("strength"),cardio=num("cardio"),rhr=num("rhr");
+const bmi=(h>0&&w>0)?w/Math.pow(h/100,2):null,whtr=(h>0&&waist>0)?waist/h:null;
+$("bmiOut").textContent=bmi?bmi.toFixed(1):"–";$("whrOut").textContent=whtr?whtr.toFixed(2):"–";$("vo2Out").textContent=vo2||"–";$("sleepOut").textContent=sleep||"–";
+const clinical=[],best=[],emerging=[],experimental=[],plan=[],dont=[],urgent=[];
+const goals=low(val("goals")+" "+val("future")),supp=low(val("supps")),symptoms=low(val("symptoms"));
 
-  $("bmiOut").textContent=bmi?bmi.toFixed(1):"–";
-  $("vo2Out").textContent=vo2||"–";
-  $("sleepOut").textContent=sleep||"–";
-  $("stepsOut").textContent=steps?steps.toLocaleString("de-CH"):"–";
+const bp=parseBP();
+if(bp){if(bp[0]>=180||bp[1]>=120)urgent.push("Der eingegebene Blutdruck ist sehr hoch. Messung wiederholen und zeitnah medizinisch abklären; bei akuten Symptomen sofort medizinische Hilfe suchen.");else if(bp[0]>=140||bp[1]>=90){clinical.push(card("clinical","Blutdruck","Der eingegebene Wert liegt im erhöhten Bereich. Einzelmessungen sind nicht diagnostisch; standardisierte Wiederholungsmessungen sind wichtiger.","Mehrere korrekte Messungen dokumentieren und ärztlich einordnen."));plan.push("Blutdruck standardisiert mehrfach messen und Trend dokumentieren.");}else clinical.push(card("clinical","Blutdruck","Der eingegebene Wert liefert keinen offensichtlichen Hochdruck-Hinweis. Wiederholte korrekte Messungen sind aussagekräftiger als ein Einzelwert."))}
+if(val("meds"))urgent.push("Medikamente angegeben: neue Supplemente oder experimentelle Interventionen auf Wechselwirkungen prüfen.");
+if(symptoms&&!symptoms.includes("keine"))urgent.push("Aktuelle Beschwerden angegeben: vor deutlicher Trainingssteigerung medizinisch oder physiotherapeutisch einordnen.");
 
-  const good=[],levers=[],plan=[],medical=[],urgent=[];
+if(!Number.isNaN(strength)){if(strength>=2)clinical.push(card("clinical","Krafttraining","Du erreichst die WHO-Basisempfehlung von Muskelkräftigung an mindestens zwei Tagen pro Woche.","Jetzt eher Qualität, progressive Belastung und langfristige Konstanz optimieren.",[["WHO","https://www.who.int/europe/news-room/fact-sheets/item/physical-activity"]]));else{clinical.push(card("clinical","Krafttraining","Weniger als zwei Krafteinheiten pro Woche liegt unter der üblichen WHO-Empfehlung für Muskelkräftigung.","Wenn gesundheitlich möglich: auf zwei Ganzkörpereinheiten pro Woche erhöhen.",[["WHO","https://www.who.int/europe/news-room/fact-sheets/item/physical-activity"]]));plan.push("Krafttraining auf 2 Einheiten/Woche bringen.")}}
+if(!Number.isNaN(cardio)){if(cardio>=2)clinical.push(card("clinical","Ausdauer","Regelmässiges Ausdauertraining ist vorhanden. Für Gesundheit zählt neben Intensität vor allem der gesamte Wochenumfang.","Leichte/moderate Basis plus gezielte intensive Reize passend zum Trainingsziel.",[["WHO","https://www.who.int/europe/news-room/fact-sheets/item/physical-activity"]]));else{clinical.push(card("clinical","Ausdauer","Die aktuelle Frequenz deutet darauf hin, dass die aerobe Basis noch ausgebaut werden könnte.","Mindestens zwei regelmässige Ausdauereinheiten als pragmatische Basis etablieren.",[["WHO","https://www.who.int/europe/news-room/fact-sheets/item/physical-activity"]]));plan.push("Aerobe Basis regelmässiger machen.")}}
+if(steps){if(steps>=7000)best.push(card("best","Alltagsbewegung",`Mit rund ${steps.toLocaleString("de-CH")} Schritten pro Tag ist bereits viel Alltagsbewegung vorhanden. Einen magischen universellen Schritt-Grenzwert gibt es nicht.`,"Konstanz behalten; nicht jeden Tag gegen eine Uhr-Zahl optimieren."));else{best.push(card("best","Alltagsbewegung",`Rund ${steps.toLocaleString("de-CH")} Schritte/Tag lassen Raum für mehr niedrigschwellige Bewegung.`,"Spaziergänge, Treppen und kurze aktive Wege erhöhen – ohne starres 10’000er-Dogma."));plan.push("Tägliche Alltagsbewegung schrittweise erhöhen.")}}
+if(sleep){if(sleep<7){clinical.push(card("clinical","Schlafdauer",`Mit durchschnittlich ${sleep.toFixed(1)} h liegt die Schlafdauer unter der allgemeinen Empfehlung von mindestens 7 h für gesunde Erwachsene.`,"30–45 Minuten mehr Schlafgelegenheit für 4–6 Wochen testen und Wohlbefinden/HRV/Trainingstrend beobachten.",[["AASM/SRS","https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/"]]));plan.push("Schlafgelegenheit um 30–45 Minuten verlängern.");}else clinical.push(card("clinical","Schlafdauer",`Mit rund ${sleep.toFixed(1)} h liegt die Schlafdauer im allgemein empfohlenen Bereich.`,"Qualität, Regelmässigkeit und Tagesfunktion sind zusätzlich relevant.",[["AASM/SRS","https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity-for-adults/"]]))}
 
-  if(strength>=2) good.push("Mindestens zwei Krafttrainings pro Woche sind bereits etabliert.");
-  else if(!Number.isNaN(strength)){
-    levers.push("Krafttraining auf zwei Einheiten pro Woche entwickeln, sofern Beschwerden und Gesundheit es zulassen.");
-    plan.push("Zwei kurze Ganzkörper-Krafteinheiten pro Woche einplanen und Belastung schrittweise steigern.");
-  }
+if(bmi){let body=`BMI ${bmi.toFixed(1)} liegt ${bmi<18.5?"unter":bmi<25?"im traditionellen Referenzbereich":bmi<30?"im Bereich 'Übergewicht' nach klassischer BMI-Klassifikation":"im Bereich 'Adipositas' nach klassischer BMI-Klassifikation"}. BMI ist ein etabliertes populationsbasiertes Screening-Instrument, trennt aber Muskelmasse, Fettmasse und Fettverteilung nicht.`;if(whtr)body+=` Deine Waist-to-Height Ratio beträgt ${whtr.toFixed(2)}. Moderne EASO-Ansätze beziehen zentrale Fettverteilung und klinischen Kontext stärker ein als BMI allein.`;best.push(card("best","Körperzusammensetzung: BMI richtig einordnen",body,whtr?"BMI nicht isoliert bewerten; Taille/Grösse, Gewichtsverlauf, Fitness, Blutdruck und metabolische Werte gemeinsam betrachten.":"Falls einfach verfügbar: Taillenumfang ergänzen. Er liefert zusammen mit der Körpergrösse mehr Kontext zur zentralen Fettverteilung.",[["EASO","https://easo.org/cpd/a-new-approach-to-obesity-diagnosis-staging-and-management/"]]));dont.push("BMI als alleinige Aussage über Körperfett, Muskelmasse oder persönliche Fitness.");}
+if(vo2){best.push(card("best","Cardiorespiratory Fitness",`Garmin meldet einen VO₂max von ${vo2}. Für die individuelle Steuerung ist der Trend über Monate meist wertvoller als eine einzelne absolute Wearable-Zahl.`,"Zielwerte als Motivation nutzen, aber reale Leistungsfähigkeit, Trainingsverträglichkeit und Trend höher gewichten als 1–2 Punkte Differenz."));dont.push("Garmin-VO₂max als Labormessung behandeln.");}
+if(val("hrv")){best.push(card("best","HRV / Recovery",`HRV (${esc(val("hrv"))}) ist stark individuell. Einzelne Tageswerte sind anfällig für Schlaf, Alkohol, Infekte, Trainingslast und Messrauschen.`,"1–2-Wochen-Trends zusammen mit Ruhepuls, Schlaf und subjektiver Erholung betrachten."));dont.push("Einen einzelnen HRV-Wert als Zeichen von 'gut' oder 'schlecht' interpretieren.");}
 
-  if(cardio>=2) good.push("Regelmässiges Ausdauertraining ist vorhanden.");
-  else if(!Number.isNaN(cardio)){
-    levers.push("Eine regelmässige aerobe Basis aufbauen.");
-    plan.push("Zwei lockere bis moderate Ausdauereinheiten pro Woche etablieren.");
-  }
+const brain=val("interestBrain")||goals.includes("gedächtn")||goals.includes("kogn")||goals.includes("denk")||goals.includes("brain"),creatine=supp.includes("creat");
+if(brain||creatine)emerging.push(card("emerging","Creatin & Kognition","Creatin ist für Sport/Training deutlich besser etabliert als für Kognition. Eine 2024 Meta-Analyse fand moderate positive Signale insbesondere für Gedächtnis, während ein anderer systematischer Review 2024 die kognitive Evidenz skeptischer beurteilt.",creatine?"Wenn du Creatin ohnehin für Training nutzt, kann der mögliche kognitive Zusatznutzen als Bonus gesehen werden – nicht als bewiesene Demenzprävention.":"Kein Grund, Creatin ausschliesslich als Gehirn-Supplement zu beginnen; als Trainingssupplement kann es je nach Profil anders bewertet werden.",[["Meta-analysis","https://pubmed.ncbi.nlm.nih.gov/39070254/"],["Critical review","https://pubmed.ncbi.nlm.nih.gov/38582412/"]]));
+if(val("interestMuscle")||age>=50||goals.includes("kletter")||goals.includes("muskel"))emerging.push(card("emerging","Muscle Power statt nur Muskelmasse","Mit zunehmendem Alter wird nicht nur maximale Kraft, sondern auch die Geschwindigkeit der Kraftentwicklung für Funktion relevant. Systematische Reviews zeigen Vorteile von Power-Training für funktionelle Leistungsfähigkeit älterer Erwachsener.","Zuerst stabile Kraftbasis aufbauen. Später können sichere, schnelle konzentrische Bewegungen bzw. Power-Elemente sinnvoll sein – technisch sauber und angepasst.",[["Power vs strength","https://pubmed.ncbi.nlm.nih.gov/35953775/"],["Resistance training 2026","https://pubmed.ncbi.nlm.nih.gov/42282453/"]]));
+if(val("interestFasting")||goals.includes("fast")||val("mealtimes"))emerging.push(card("emerging","Time-Restricted Eating","Meta-Analysen randomisierter Studien zeigen bei verschiedenen Populationen modest positive Effekte auf Gewicht und einige metabolische Marker. Unklar bleibt in vielen Situationen, wie viel davon durch Timing versus reduzierte Energieaufnahme erklärt wird.","Als Essstruktur kann TRE sinnvoll sein, wenn es zum Alltag passt. Nicht auf Kosten von ausreichendem Protein, Trainingserholung oder sozialer Lebensqualität.",[["Network meta-analysis","https://pubmed.ncbi.nlm.nih.gov/41586347/"],["Non-diabetic adults","https://pubmed.ncbi.nlm.nih.gov/41346676/"]]));
+if(val("interestCGM"))emerging.push(card("emerging","CGM ohne Diabetes: Biofeedback statt Diagnose","2026 Reviews zeigen: In nicht-diabetischen Populationen kann CGM Verhalten und kurzfristige Glukoseparameter beeinflussen; bei gesunden normoglykämischen Menschen ist der klinische Zusatznutzen jedoch begrenzt oder unklar.","Wenn überhaupt, dann zeitlich begrenzt und mit einer klaren Frage – nicht als dauerhafte Optimierungs-Messung.",[["Systematic review","https://pubmed.ncbi.nlm.nih.gov/41588451/"],["Clinical review","https://pubmed.ncbi.nlm.nih.gov/42545686/"]]));
+if(val("interestNAD")||supp.includes("nmn")||supp.includes("nr ")||supp.includes("nad"))experimental.push(card("experimental","NAD / NR / NMN","Humanstudien zeigen zuverlässig, dass NR/NMN NAD-bezogene Biomarker verändern können. Für relevante Healthspan-, Muskel- oder Longevity-Endpunkte sind die Resultate bisher heterogen und häufig null.","Interessant beobachten; derzeit kein starker Grund für Routine-Supplementierung nur mit dem Ziel langsamer zu altern.",[["Systematic review 2026","https://pubmed.ncbi.nlm.nih.gov/41655607/"],["Muscle meta-analysis","https://pubmed.ncbi.nlm.nih.gov/40275690/"]]));
+if(val("interestRapamycin"))experimental.push(card("experimental","Rapamycin / mTOR","Rapamycin ist eines der stärksten Geroscience-Signale aus Tiermodellen. Humanstudien und ein 48-Wochen-RCT liefern interessante Sicherheits- und Healthspan-Daten, aber bisher keinen Beweis, dass Rapamycin das Leben gesunder Menschen verlängert oder Altern klinisch relevant verlangsamt.","Watchlist, keine Selbstmedikation. Verschreibungspflichtiges Medikament mit potenziellen Nebenwirkungen und Interaktionen.",[["Systematic review","https://pubmed.ncbi.nlm.nih.gov/38310895/"],["PEARL trial","https://pubmed.ncbi.nlm.nih.gov/40188830/"],["Evidence review","https://pubmed.ncbi.nlm.nih.gov/40778880/"]]));
 
-  if(steps){
-    if(steps>=7000) good.push("Die Alltagsbewegung ist bereits auf einem guten Niveau.");
-    else{
-      levers.push("Alltagsbewegung schrittweise erhöhen.");
-      plan.push("Mehr tägliche Bewegung einbauen; Regelmässigkeit ist wichtiger als ein perfektes Schrittziel.");
-    }
-  }
+const rows=[];
+if(supp.includes("creat"))rows.push(["Creatin","Best Current Practice","Für Kraft/Training gut belegt; 3–5 g/Tag Creatin-Monohydrat ist ein typischer Erhaltungsbereich. Kognition bleibt Emerging.","best"]);
+if(supp.includes("protein"))rows.push(["Protein","Best Current Practice","Supplement nur Werkzeug: Gesamtprotein, Lebensmittelqualität und Verteilung sind entscheidender als der Shake.","best"]);
+if(supp.includes("omega"))rows.push(["Omega-3","Context dependent","Dosis EPA+DHA, Fischkonsum und medizinische Indikation bestimmen den Nutzen; nicht automatisch mehr = besser.","best"]);
+if(supp.includes("vitamin d")||supp.includes("d3"))rows.push(["Vitamin D","Clinical context","Mangel/Indikation behandeln; dauerhafte Hochdosis ohne Grund vermeiden. Dosis sollte bekannt sein.","clinical"]);
+if(supp.includes("magnesium"))rows.push(["Magnesium","Optional","Kein obligatorisches Longevity-Supplement. Nutzen hängt von Ernährung, Mangel, Beschwerden und medizinischem Kontext ab.","weak"]);
+if(supp.includes("nmn")||supp.includes("nad")||supp.includes("nr "))rows.push(["NAD-Precursor","Experimental","Biomarker-Effekt vorhanden; klinischer Anti-Aging-Nutzen nicht bewiesen.","experimental"]);
 
-  if(sleep){
-    if(sleep>=7&&sleep<=9) good.push("Die gemeldete Schlafdauer liegt im allgemein günstigen Bereich.");
-    else if(sleep<7){
-      levers.push("Schlafdauer verbessern; das kann Regeneration, Wohlbefinden und Trainingsqualität unterstützen.");
-      plan.push("Für 12 Wochen 30–45 Minuten mehr Schlafgelegenheit testen und Trends beobachten.");
-    }else{
-      medical.push("Sehr lange Schlafdauer bei gleichzeitiger Tagesmüdigkeit oder nicht erholsamem Schlaf ärztlich einordnen.");
-    }
-  }
+if(val("alcohol")&&!low(val("alcohol")).includes("kein")&&!low(val("alcohol")).includes("nein")){best.push(card("best","Alkohol & Recovery",`Angegeben: ${esc(val("alcohol"))}. Für Performance und Schlaf ist Alkohol ein gut veränderbarer Faktor; für Longevity gibt es keinen gesundheitlichen Grund, Alkohol gezielt einzuplanen.`,"Ein 3–4-wöchiges persönliches Experiment mit deutlich weniger Alkohol kann zeigen, ob Schlaf, HRV und Trainingsgefühl reagieren."));plan.push("Optional: 3–4 Wochen Alkohol deutlich reduzieren und Schlaf/HRV vergleichen.");}
+if(low(val("stress"))==="hoch"||low(val("stress"))==="sehr hoch"){clinical.push(card("clinical","Stress / Erholung","Hohe chronische Belastung kann Schlaf, Training, psychische Gesundheit und Gesundheitsverhalten beeinflussen.","Nicht nur Trainings- oder Supplement-Optimierung betreiben; Erholung und Belastungssteuerung priorisieren."));plan.push("Erholungsfenster und Belastungssteuerung konkret verbessern.");}
 
-  if(vo2) good.push("Ein VO₂max-Wert ist vorhanden; besonders nützlich ist der Trend über mehrere Monate.");
-  if(rhr&&rhr<50) good.push("Der Ruhepuls ist niedrig; bei trainierten und beschwerdefreien Personen kann das zum Trainingsprofil passen.");
+dont.push("Einzelne Wearable-Scores als medizinische Diagnose.");dont.push("Supplemente nur deshalb einsetzen, weil sie in Longevity-Podcasts häufig vorkommen.");dont.push("Verbesserte Biomarker automatisch mit längerer Lebensdauer gleichsetzen.");
 
-  if(bmi){
-    if(bmi>=18.5&&bmi<25) good.push("Der BMI liegt im üblichen Referenzbereich; er sagt aber wenig über Muskel- und Fettverteilung aus.");
-    if(bmi>=30) levers.push("Körperzusammensetzung und metabolische Risikofaktoren genauer betrachten statt nur das Gewicht.");
-    if(bmi<18.5) medical.push("Niedriger BMI sollte im Kontext von Muskelmasse, Ernährung, Gewichtsverlauf und Wohlbefinden betrachtet werden.");
-  }
+$("clinicalResults").innerHTML=clinical.length?clinical.join(""):'<p class="small">Zu wenige Angaben für personalisierte Clinical-Standard-Hinweise.</p>';
+$("bestResults").innerHTML=best.length?best.join(""):'<p class="small">Noch keine personalisierten Best-Practice-Hinweise.</p>';
+$("emergingResults").innerHTML=emerging.length?emerging.join(""):'<p class="small">Aktiviere Science-Radar-Themen oder ergänze Ziele, um relevante Emerging-Science-Themen zu sehen.</p>';
+$("experimentalResults").innerHTML=experimental.length?experimental.join(""):'<p class="small">Keine experimentellen Themen ausgewählt. Das ist kein Nachteil – sie sind bewusst optional.</p>';
 
-  if(waist){
-    if(v("sex")==="m"&&waist>=102) medical.push("Der Taillenumfang erhöht die Relevanz von Blutdruck und Stoffwechselwerten.");
-    if(v("sex")==="f"&&waist>=88) medical.push("Der Taillenumfang erhöht die Relevanz von Blutdruck und Stoffwechselwerten.");
-  }
+const pl=$("planList");pl.innerHTML="";const dp=[...new Set(plan)].slice(0,7);(dp.length?dp:["Bestehende gute Gewohnheiten konsistent halten; erst bei einem klaren Ziel weiter optimieren."]).forEach(x=>addList(pl,x));
+const dl=$("dontOverinterpret");dl.innerHTML="";[...new Set(dont)].slice(0,7).forEach(x=>addList(dl,x));
+const ul=$("urgentList");ul.innerHTML="";[...new Set(urgent)].forEach(x=>addList(ul,x));$("urgentCard").classList.toggle("hidden",urgent.length===0);
 
-  const bp=parseBP();
-  if(bp){
-    if(bp[0]>=180||bp[1]>=120) urgent.push("Der eingegebene Blutdruck ist sehr hoch. Wenn die Messung stimmt, zeitnah medizinisch abklären; bei akuten Symptomen sofort Hilfe suchen.");
-    else if(bp[0]>=140||bp[1]>=90) medical.push("Der eingegebene Blutdruck ist erhöht. Mehrere standardisierte Messungen und ärztliche Einordnung sind sinnvoll.");
-    else good.push("Der eingegebene Blutdruck liefert keinen offensichtlichen Hochdruck-Hinweis; wiederholte korrekte Messungen sind aussagekräftiger.");
-  }
+$("supplementResult").innerHTML=rows.length?`<div class="tablewrap"><table><tr><th>Supplement</th><th>Evidenzebene</th><th>Einordnung</th></tr>${rows.map(r=>`<tr><td><strong>${esc(r[0])}</strong></td><td><span class="badge ${r[3]}">${esc(r[1])}</span></td><td>${esc(r[2])}</td></tr>`).join("")}</table></div>`:'<p class="small">Keine der hinterlegten Standard-Supplementkategorien erkannt oder keine Supplemente eingegeben.</p>';
 
-  const cond=low(v("conditions")),meds=low(v("meds")),sympt=low(v("symptoms"));
-  if(cond&&!cond.includes("keine")) medical.push("Bekannte Erkrankungen bei Training und Supplementen berücksichtigen.");
-  if(meds) medical.push("Supplemente auf Wechselwirkungen mit den angegebenen Medikamenten prüfen.");
-  if(sympt&&!sympt.includes("keine")) medical.push("Aktuelle Beschwerden vor deutlicher Trainingssteigerung medizinisch oder physiotherapeutisch einordnen.");
-  if(low(v("snoring")).includes("ja")) medical.push("Regelmässiges Schnarchen zusammen mit Tagesmüdigkeit oder nicht erholsamem Schlaf kann Anlass für eine Schlafapnoe-Abklärung sein.");
-
-  levers.push("Proteinversorgung und insgesamt wenig verarbeitete, pflanzenreiche Ernährung pragmatisch prüfen.");
-  levers.push("Supplemente nur dort einsetzen, wo Nutzen, Dosis und persönlicher Bedarf plausibel sind.");
-
-  if(v("alcohol")&&!low(v("alcohol")).includes("kein")&&!low(v("alcohol")).includes("nein")){
-    levers.push("Alkoholmenge als veränderbaren Faktor für Schlaf, Regeneration und langfristige Gesundheit betrachten.");
-  }
-
-  if(v("goals")) plan.push("Training gezielt an den eigenen Zielen ausrichten, statt nur mehr Umfang zu sammeln.");
-  plan.push("Wearable-Werte wie HRV, Schlafscore und VO₂max als Wochen-/Monatstrends betrachten, nicht als tägliche Bewertung.");
-  if(v("supps")) plan.push("Supplemente auf Nutzen, Dosis und mögliche Doppelungen prüfen.");
-
-  if(!medical.length){
-    medical.push("Keine Spezial-Longevity-Diagnostik aus diesen Angaben ableitbar. Bei normaler Vorsorge sind je nach Alter und Risiko Blutdruck, Lipidprofil, Blutzucker/HbA1c und Nierenfunktion häufig nützlich.");
-    medical.push("Lp(a) kann zur einmaligen kardiovaskulären Risikoeinordnung sinnvoll sein, falls noch nie bestimmt.");
-  }
-
-  const gl=$("goodList"),ll=$("leverList"),pl=$("planList"),ml=$("medicalList"),ul=$("urgentList");
-  [gl,ll,pl,ml,ul].forEach(x=>x.innerHTML="");
-  (good.length?good:["Noch zu wenige Angaben für positive Aussagen."]).slice(0,6).forEach(x=>add(gl,x));
-  levers.slice(0,5).forEach(x=>add(ll,x));
-  plan.slice(0,7).forEach(x=>add(pl,x));
-  medical.slice(0,6).forEach(x=>add(ml,x));
-  urgent.slice(0,4).forEach(x=>add(ul,x));
-
-  $("urgentBox").classList.toggle("hidden",urgent.length===0);
-  $("supplementResult").innerHTML=supplementRows(v("supps"));
-
-  let badge="Orientierung",cls="pill neutral";
-  if(urgent.length){badge="Medizinisch prüfen";cls="pill flag"}
-  else if(good.length>=4&&medical.length<=2){badge="Gute Basis";cls="pill good"}
-  else if(medical.length>=3){badge="Punkte prüfen";cls="pill watch"}
-  $("badge").textContent=badge;$("badge").className=cls;
-
-  $("results").classList.remove("hidden");
-  setTimeout(()=>$("results").scrollIntoView({behavior:"smooth",block:"start"}),100);
+$("results").classList.remove("hidden");setTimeout(()=>$("results").scrollIntoView({behavior:"smooth",block:"start"}),100);
 }
 
-function collect(){const d={};ids.forEach(id=>d[id]=v(id));return d}
-function saveLocal(){localStorage.setItem("healthLongevityDataV1",JSON.stringify(collect()));alert("Nur auf diesem Gerät gespeichert.")}
-function loadLocal(){try{const r=localStorage.getItem("healthLongevityDataV1");if(!r)return;const d=JSON.parse(r);ids.forEach(id=>{if($(id)&&d[id]!==undefined)$(id).value=d[id]})}catch(e){}}
-function clearAll(){if(!confirm("Alle Eingaben und lokal gespeicherten Daten löschen?"))return;ids.forEach(id=>{if($(id))$(id).value=""});localStorage.removeItem("healthLongevityDataV1");$("results").classList.add("hidden")}
+function collect(){const d={};ids.forEach(id=>{const e=$(id);d[id]=e?.type==="checkbox"?e.checked:(e?.value||"")});return d}
+function saveLocal(){localStorage.setItem("longevityEvidenceV2",JSON.stringify(collect()));alert("Nur lokal auf diesem Gerät gespeichert.")}
+function loadLocal(){try{const r=localStorage.getItem("longevityEvidenceV2");if(!r)return;const d=JSON.parse(r);ids.forEach(id=>{const e=$(id);if(!e||d[id]===undefined)return;if(e.type==="checkbox")e.checked=!!d[id];else e.value=d[id]})}catch(e){}}
+function clearAll(){if(!confirm("Alle Eingaben und lokal gespeicherten Daten löschen?"))return;ids.forEach(id=>{const e=$(id);if(!e)return;if(e.type==="checkbox")e.checked=false;else e.value=""});localStorage.removeItem("longevityEvidenceV2");$("results").classList.add("hidden")}
 
-function resultText(){
-  const lever=[...$("leverList").querySelectorAll("li")].map((x,i)=>`${i+1}. ${x.textContent}`).join("\n");
-  const plan=[...$("planList").querySelectorAll("li")].map(x=>`• ${x.textContent}`).join("\n");
-  return `Health & Longevity Snapshot
+function buildPrompt(){const d=collect();const visible=Object.entries(d).filter(([k,x])=>x!==""&&x!==false).map(([k,x])=>`- ${k}: ${x}`).join("\n");return `Du bist mein evidenzbasierter Health, Performance & Longevity Advisor.
 
-BMI: ${$("bmiOut").textContent}
+Analysiere die folgenden Daten mit aktueller Literatur bis heute. Recherchiere bei medizinischen und Longevity-Themen aktuelle Guidelines, systematische Reviews, Meta-Analysen und hochwertige Humanstudien.
+
+Ordne JEDE relevante Aussage ein:
+1. CLINICAL STANDARD – Guidelines / robuste Human-Evidenz
+2. BEST CURRENT PRACTICE – anerkannt, aber kontextabhängig
+3. EMERGING HUMAN SCIENCE – erste gute Human-Daten, noch kein Standard
+4. EXPERIMENTAL / WATCHLIST – wissenschaftlich interessant, Nutzen noch nicht bewiesen
+5. INSUFFICIENT EVIDENCE / HYPE FILTER – derzeit nicht priorisieren
+
+Wichtig:
+- BMI nie isoliert als Gesundheitsurteil verwenden.
+- Wearable-Daten als Schätzwerte behandeln; Trends sind wichtiger als einzelne Tage.
+- Biomarkerverbesserung nicht automatisch mit längerem Leben gleichsetzen.
+- Bei widersprüchlicher Forschung Unsicherheit nennen.
+- Keine Selbstmedikation mit verschreibungspflichtigen Medikamenten empfehlen.
+- Quellen direkt bei wichtigen Aussagen nennen.
+- Priorisiere 5 konkrete Hebel und einen 12-Wochen-Plan.
+
+MEINE DATEN:
+${visible}
+
+Zusätzlich: persönlicher Longevity Snapshot, Training/VO2max/Kraft/Power, Schlaf & Recovery, Body Composition, Supplement Evidence Map, relevante Emerging Science, Experimental Watchlist und was ich nicht überinterpretieren sollte.`}
+async function copyPrompt(){try{await navigator.clipboard.writeText(buildPrompt());alert("Analyse-Prompt kopiert.");}catch(e){alert("Kopieren ist in diesem Browser nicht verfügbar.")}}
+function resultText(){const plan=[...$("planList").querySelectorAll("li")].map((x,i)=>`${i+1}. ${x.textContent}`).join("\n");return `Health & Longevity Evidence Map v2
+
+BMI: ${$("bmiOut").textContent} (nur Screening)
+Waist/Height: ${$("whrOut").textContent}
 VO₂max: ${$("vo2Out").textContent}
 Schlaf: ${$("sleepOut").textContent} h
-Schritte: ${$("stepsOut").textContent}
 
-Wichtigste Hebel:
-${lever}
-
-12-Wochen-Fokus:
+12-Wochen-Prioritäten:
 ${plan}
 
-Orientierende Gesundheitsinformation, keine Diagnose.`;
-}
-
-async function shareResults(){
-  const text=resultText();
-  if(navigator.share){
-    try{await navigator.share({title:"Health & Longevity Snapshot",text});return}catch(e){}
-  }
-  try{await navigator.clipboard.writeText(text);alert("Ergebnis kopiert.")}catch(e){alert("Teilen ist in diesem Browser nicht verfügbar.")}
-}
-async function copyResults(){
-  try{await navigator.clipboard.writeText(resultText());alert("Ergebnis kopiert.")}catch(e){alert("Kopieren ist in diesem Browser nicht verfügbar.")}
-}
-
-$("analyzeBtn").addEventListener("click",analyze);
-$("saveBtn").addEventListener("click",saveLocal);
-$("clearBtn").addEventListener("click",clearAll);
-$("shareBtn").addEventListener("click",shareResults);
-$("copyBtn").addEventListener("click",copyResults);
-
-loadLocal();
+Die lokale App trennt Clinical Standard, Best Current Practice, Emerging Human Science und Experimental / Watchlist.`}
+async function shareResult(){const t=resultText();if(navigator.share){try{await navigator.share({title:"Health & Longevity Evidence Map",text:t});return}catch(e){}}try{await navigator.clipboard.writeText(t);alert("Ergebnis kopiert.");}catch(e){}}
+$("analyzeBtn").addEventListener("click",analyze);$("saveBtn").addEventListener("click",saveLocal);$("clearBtn").addEventListener("click",clearAll);$("copyPromptBtn").addEventListener("click",copyPrompt);$("shareBtn").addEventListener("click",shareResult);loadLocal();
 </script>
-</body>
-</html>
+</body></html>
