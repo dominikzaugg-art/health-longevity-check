@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B41CD">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Health Check">
+<title>Health & Longevity Check</title>
+<style>
+:root{
+  --bg:#f5f7fb;--card:#ffffff;--text:#172033;--muted:#6b7686;--blue:#0B41CD;
+  --line:#dfe5ee;--good:#177d4d;--warn:#a86400;--danger:#b42318;--soft:#eef3ff
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding-bottom:calc(22px + env(safe-area-inset-bottom))
+}
+header{
+  background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;
+  padding-top:env(safe-area-inset-top)
+}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+.kicker{font-size:11px;letter-spacing:.09em;color:var(--blue);font-weight:800;text-transform:uppercase}
+h1{font-size:25px;line-height:1.1;margin:5px 0}
+h2{font-size:20px;margin:0 0 14px}
+p,li{line-height:1.45}
+.small{font-size:12px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:16px;margin:14px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:13px;font-weight:750;margin:0 0 6px}
+input,select,textarea{
+  width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--text);
+  font:inherit;font-size:16px;padding:12px;min-height:46px;outline:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(11,65,205,.08)}
+textarea{min-height:82px;resize:vertical}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+button{
+  -webkit-appearance:none;appearance:none;border:0;border-radius:12px;padding:13px 16px;
+  font:inherit;font-weight:800;min-height:46px;cursor:pointer
+}
+.primary{background:var(--blue);color:#fff}
+.secondary{background:#eaf0ff;color:var(--blue)}
+.ghost{background:#f1f3f6;color:#394354}
+.sticky{
+  position:sticky;bottom:calc(8px + env(safe-area-inset-bottom));z-index:8;
+  background:rgba(245,247,251,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  padding:10px;border-radius:15px;border:1px solid var(--line)
+}
+.hidden{display:none}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+@media(max-width:680px){.metrics{grid-template-columns:repeat(2,1fr)}}
+.metric{border:1px solid var(--line);border-radius:13px;padding:12px;min-height:92px}
+.metric .v{font-size:23px;font-weight:850;margin-top:4px}
+.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800}
+.good{background:#e6f4ec;color:var(--good)}
+.watch{background:#fff0d8;color:var(--warn)}
+.neutral{background:#edf1f6;color:#56606f}
+.flag{background:#fde8e6;color:var(--danger)}
+.note{border-left:4px solid var(--blue);background:#f3f6ff}
+.goodbox{border-left:4px solid var(--good)}
+.watchbox{border-left:4px solid var(--warn)}
+.alertbox{border-left:4px solid var(--danger);background:#fff7f6}
+ol,ul{padding-left:21px}
+.result-section{scroll-margin-top:95px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.footer{padding:10px 0 28px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="kicker">Personal Health Check</div>
+    <h1>Health & Longevity</h1>
+    <div class="small">Privater Check für Alltag, Training, Schlaf und Supplemente.</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div class="card note">
+  <strong>Privat by design:</strong> Die Analyse läuft vollständig auf deinem Gerät.
+  Es werden keine Gesundheitsdaten an einen Server gesendet. Speichern ist optional und erfolgt nur lokal in diesem Browser.
+</div>
+
+<div class="card">
+  <h2>1 · Basis</h2>
+  <div class="grid">
+    <div><label>Alter</label><input id="age" inputmode="numeric" type="number" min="18" max="100" placeholder="z. B. 53"></div>
+    <div><label>Geschlecht</label><select id="sex"><option value="">Bitte wählen</option><option value="m">männlich</option><option value="f">weiblich</option><option value="x">divers / keine Angabe</option></select></div>
+    <div><label>Grösse (cm)</label><input id="height" inputmode="decimal" type="number" step="0.1" placeholder="z. B. 176"></div>
+    <div><label>Gewicht (kg)</label><input id="weight" inputmode="decimal" type="number" step="0.1" placeholder="z. B. 72"></div>
+    <div><label>Taillenumfang (optional)</label><input id="waist" inputmode="decimal" type="number" step="0.1" placeholder="cm"></div>
+    <div><label>Bewegung im Alltag</label><select id="activity"><option value="">Bitte wählen</option><option>überwiegend sitzend</option><option>gemischt</option><option>viel auf den Beinen</option><option>körperlich aktiv</option></select></div>
+  </div>
+  <div style="margin-top:12px"><label>Wichtigste Ziele</label><textarea id="goals" placeholder="z. B. fit älter werden, besser schlafen, Muskelmasse aufbauen, 10 km schneller laufen"></textarea></div>
+  <div style="margin-top:12px"><label>Was möchtest du mit 60, 70 und 80 noch gut können?</label><textarea id="future" placeholder="z. B. wandern, reisen, klettern, Halbmarathon, mit Enkeln spielen"></textarea></div>
+</div>
+
+<div class="card">
+  <h2>2 · Gesundheit</h2>
+  <div class="grid">
+    <div><label>Bekannte Erkrankungen</label><textarea id="conditions" placeholder="oder „keine“"></textarea></div>
+    <div><label>Medikamente</label><textarea id="meds" placeholder="inkl. Dosis, falls bekannt"></textarea></div>
+    <div><label>Aktuelle Beschwerden / Schmerzen</label><textarea id="symptoms" placeholder="oder „keine“"></textarea></div>
+    <div><label>Familiengeschichte</label><textarea id="family" placeholder="z. B. Herzinfarkt, Diabetes, Demenz, Krebs, Osteoporose"></textarea></div>
+    <div><label>Blutdruck, falls bekannt</label><input id="bp" placeholder="z. B. 125/78"></div>
+    <div><label>Bekannte auffällige Laborwerte</label><textarea id="labs" placeholder="z. B. LDL erhöht / keine"></textarea></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>3 · Garmin / Wearable</h2>
+  <div class="grid">
+    <div><label>Gerät</label><input id="device" placeholder="z. B. Garmin Epix / Apple Watch"></div>
+    <div><label>VO₂max</label><input id="vo2" inputmode="decimal" type="number" step="0.1"></div>
+    <div><label>Ruhepuls</label><input id="rhr" inputmode="numeric" type="number" placeholder="bpm"></div>
+    <div><label>HRV / HRV Status</label><input id="hrv" placeholder="z. B. 43 ms / balanced"></div>
+    <div><label>Schlafdauer Ø</label><input id="sleep" inputmode="decimal" type="number" step="0.1" placeholder="Stunden"></div>
+    <div><label>Sleep Score Ø</label><input id="sleepscore" inputmode="numeric" type="number" min="0" max="100"></div>
+    <div><label>Schritte Ø / Tag</label><input id="steps" inputmode="numeric" type="number"></div>
+    <div><label>Training Status / Load</label><input id="trainingstatus" placeholder="z. B. productive"></div>
+  </div>
+  <div style="margin-top:12px"><label>Trend der letzten Monate</label><textarea id="trends" placeholder="z. B. VO₂max +2, HRV stabil, Schlaf schlechter"></textarea></div>
+</div>
+
+<div class="card">
+  <h2>4 · Training</h2>
+  <div class="grid">
+    <div><label>Krafttraining / Woche</label><input id="strength" inputmode="numeric" type="number" min="0" max="14"></div>
+    <div><label>Ausdauer / Woche</label><input id="cardio" inputmode="numeric" type="number" min="0" max="14"></div>
+    <div><label>Typische Laufdistanz / Pace</label><input id="run" placeholder="z. B. 5 km / 5:30 min/km"></div>
+    <div><label>Zeitbudget / Woche</label><input id="time" placeholder="z. B. 4 Stunden"></div>
+  </div>
+  <div style="margin-top:12px"><label>Sportarten</label><textarea id="sports" placeholder="z. B. Laufen, Velo, Gym"></textarea></div>
+  <div style="margin-top:12px"><label>Verletzungen / Einschränkungen</label><textarea id="injuries" placeholder="oder „keine“"></textarea></div>
+</div>
+
+<div class="card">
+  <h2>5 · Ernährung</h2>
+  <div class="grid">
+    <div><label>Typischer Tag</label><textarea id="food" placeholder="Frühstück, Mittag, Abendessen, Snacks"></textarea></div>
+    <div><label>Proteinquellen</label><textarea id="protein" placeholder="z. B. Eier, Joghurt, Fisch, Fleisch, Hülsenfrüchte, Shake"></textarea></div>
+    <div><label>Gemüse / Früchte</label><input id="plants" placeholder="z. B. 4 Portionen/Tag"></div>
+    <div><label>Alkohol</label><input id="alcohol" placeholder="z. B. 2 Gläser/Woche"></div>
+    <div><label>Süsses / stark verarbeitete Lebensmittel</label><input id="ultra" placeholder="selten / täglich"></div>
+    <div><label>Essenszeiten</label><input id="mealtimes" placeholder="z. B. 07 / 12 / 19 Uhr"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>6 · Supplemente</h2>
+  <label>Was nimmst du aktuell?</label>
+  <textarea id="supps" placeholder="z. B. Creatin 5 g täglich, Vitamin D 1000 IU, Omega-3 ..."></textarea>
+</div>
+
+<div class="card">
+  <h2>7 · Schlaf & Lifestyle</h2>
+  <div class="grid">
+    <div><label>Schlafenszeit / Aufstehzeit</label><input id="sleeptimes" placeholder="z. B. 23:00 / 06:30"></div>
+    <div><label>Schlafqualität</label><select id="sleepquality"><option value="">Bitte wählen</option><option>sehr gut</option><option>gut</option><option>mittel</option><option>schlecht</option></select></div>
+    <div><label>Schnarchen / häufiges Aufwachen</label><input id="snoring" placeholder="nein / manchmal / ja"></div>
+    <div><label>Stress</label><select id="stress"><option value="">Bitte wählen</option><option>niedrig</option><option>mittel</option><option>hoch</option><option>sehr hoch</option></select></div>
+    <div><label>Kaffee</label><input id="coffee" placeholder="z. B. 3 Tassen, letzte um 14 Uhr"></div>
+    <div><label>Nikotin</label><input id="nicotine" placeholder="nein / ja"></div>
+  </div>
+</div>
+
+<div class="sticky">
+  <div class="actions">
+    <button class="primary" id="analyzeBtn">Analyse erstellen</button>
+    <button class="secondary" id="saveBtn">Lokal speichern</button>
+    <button class="ghost" id="clearBtn">Löschen</button>
+  </div>
+</div>
+
+<section id="results" class="hidden result-section">
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+      <h2 style="margin:0">Health & Longevity Snapshot</h2>
+      <span id="badge" class="pill neutral">Übersicht</span>
+    </div>
+    <div class="metrics" style="margin-top:14px">
+      <div class="metric"><div class="small">BMI</div><div class="v" id="bmiOut">–</div><div class="small">grober Indikator</div></div>
+      <div class="metric"><div class="small">VO₂max</div><div class="v" id="vo2Out">–</div><div class="small">Wearable-Schätzung</div></div>
+      <div class="metric"><div class="small">Schlaf</div><div class="v" id="sleepOut">–</div><div class="small">Ø Stunden</div></div>
+      <div class="metric"><div class="small">Schritte</div><div class="v" id="stepsOut">–</div><div class="small">Ø / Tag</div></div>
+    </div>
+  </div>
+
+  <div id="urgentBox" class="card alertbox hidden">
+    <h2>Bitte medizinisch einordnen</h2>
+    <ul id="urgentList"></ul>
+  </div>
+
+  <div class="card goodbox">
+    <h2>Was bereits gut aussieht</h2>
+    <ul id="goodList"></ul>
+  </div>
+
+  <div class="card watchbox">
+    <h2>Die wichtigsten Hebel</h2>
+    <ol id="leverList"></ol>
+  </div>
+
+  <div class="card">
+    <h2>12-Wochen-Fokus</h2>
+    <ul id="planList"></ul>
+  </div>
+
+  <div class="card">
+    <h2>Supplement-Check</h2>
+    <div id="supplementResult" class="small">Keine Supplemente eingegeben.</div>
+  </div>
+
+  <div class="card">
+    <h2>Routine-Check</h2>
+    <ul id="medicalList"></ul>
+  </div>
+
+  <div class="card note">
+    <strong>Wichtig:</strong> Diese Seite liefert allgemeine Gesundheitsinformation und keine Diagnose oder individuelle ärztliche Behandlung.
+    Wearable-Werte sind Schätzungen. Bei neuen, starken oder anhaltenden Beschwerden, auffälligem Blutdruck oder relevanten Erkrankungen bitte medizinisch abklären.
+  </div>
+
+  <div class="card">
+    <h2>Ergebnis teilen</h2>
+    <div class="actions">
+      <button class="primary" id="shareBtn">Teilen</button>
+      <button class="secondary" id="copyBtn">Text kopieren</button>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  Health & Longevity Check · lokale Browser-Auswertung · keine Datenübertragung
+</div>
+</main>
+
+<script>
+const ids=["age","sex","height","weight","waist","activity","goals","future","conditions","meds","symptoms","family","bp","labs",
+"device","vo2","rhr","hrv","sleep","sleepscore","steps","trainingstatus","trends","strength","cardio","run","time","sports","injuries",
+"food","protein","plants","alcohol","ultra","mealtimes","supps","sleeptimes","sleepquality","snoring","stress","coffee","nicotine"];
+
+const $=id=>document.getElementById(id);
+const v=id=>($(id)?.value||"").trim();
+const n=id=>parseFloat(v(id));
+const low=s=>(s||"").toLowerCase();
+const add=(el,t)=>{const li=document.createElement("li");li.textContent=t;el.appendChild(li)};
+
+function parseBP(){
+  const m=v("bp").match(/(\d{2,3})\D+(\d{2,3})/);
+  return m?[+m[1],+m[2]]:null;
+}
+
+function supplementRows(text){
+  if(!text) return '<span class="small">Keine Supplemente eingegeben.</span>';
+  const t=low(text), rows=[];
+  if(t.includes("creat")) rows.push(["Creatin","KEEP / meist sinnvoll","3–5 g/Tag Creatin-Monohydrat ist eine typische Erhaltungsdosis; besonders passend bei Krafttraining. Bei bekannter Nierenerkrankung zuerst ärztlich klären."]);
+  if(t.includes("protein")) rows.push(["Protein","KEEP – falls nötig","Gesamtprotein und Verteilung über den Tag sind wichtiger als ein bestimmtes Produkt."]);
+  if(t.includes("omega")) rows.push(["Omega-3","CHECK","EPA+DHA-Menge und Fischkonsum prüfen. Hohe Dosen nicht automatisch als besser ansehen."]);
+  if(t.includes("vitamin d")||t.includes("d3")) rows.push(["Vitamin D","CHECK","Dosis kennen; langfristige Hochdosis ohne klaren Grund vermeiden."]);
+  if(t.includes("magnesium")) rows.push(["Magnesium","OPTIONAL","Nicht obligatorisch für Longevity. Sinn kann von Ernährung, Beschwerden und medizinischer Situation abhängen."]);
+  if(!rows.length) rows.push(["Eingegebene Supplemente","CHECK","Dosis, Grund, Medikamente und Vorerkrankungen berücksichtigen; pauschale Empfehlungen wären nicht verlässlich."]);
+  return `<table><tr><th>Supplement</th><th>Einschätzung</th><th>Kommentar</th></tr>${rows.map(r=>`<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table>`;
+}
+
+function analyze(){
+  const age=n("age"),h=n("height"),w=n("weight"),waist=n("waist"),vo2=n("vo2"),sleep=n("sleep"),steps=n("steps"),
+        strength=n("strength"),cardio=n("cardio"),rhr=n("rhr"),bmi=(h>0&&w>0)?w/Math.pow(h/100,2):null;
+
+  $("bmiOut").textContent=bmi?bmi.toFixed(1):"–";
+  $("vo2Out").textContent=vo2||"–";
+  $("sleepOut").textContent=sleep||"–";
+  $("stepsOut").textContent=steps?steps.toLocaleString("de-CH"):"–";
+
+  const good=[],levers=[],plan=[],medical=[],urgent=[];
+
+  if(strength>=2) good.push("Mindestens zwei Krafttrainings pro Woche sind bereits etabliert.");
+  else if(!Number.isNaN(strength)){
+    levers.push("Krafttraining auf zwei Einheiten pro Woche entwickeln, sofern Beschwerden und Gesundheit es zulassen.");
+    plan.push("Zwei kurze Ganzkörper-Krafteinheiten pro Woche einplanen und Belastung schrittweise steigern.");
+  }
+
+  if(cardio>=2) good.push("Regelmässiges Ausdauertraining ist vorhanden.");
+  else if(!Number.isNaN(cardio)){
+    levers.push("Eine regelmässige aerobe Basis aufbauen.");
+    plan.push("Zwei lockere bis moderate Ausdauereinheiten pro Woche etablieren.");
+  }
+
+  if(steps){
+    if(steps>=7000) good.push("Die Alltagsbewegung ist bereits auf einem guten Niveau.");
+    else{
+      levers.push("Alltagsbewegung schrittweise erhöhen.");
+      plan.push("Mehr tägliche Bewegung einbauen; Regelmässigkeit ist wichtiger als ein perfektes Schrittziel.");
+    }
+  }
+
+  if(sleep){
+    if(sleep>=7&&sleep<=9) good.push("Die gemeldete Schlafdauer liegt im allgemein günstigen Bereich.");
+    else if(sleep<7){
+      levers.push("Schlafdauer verbessern; das kann Regeneration, Wohlbefinden und Trainingsqualität unterstützen.");
+      plan.push("Für 12 Wochen 30–45 Minuten mehr Schlafgelegenheit testen und Trends beobachten.");
+    }else{
+      medical.push("Sehr lange Schlafdauer bei gleichzeitiger Tagesmüdigkeit oder nicht erholsamem Schlaf ärztlich einordnen.");
+    }
+  }
+
+  if(vo2) good.push("Ein VO₂max-Wert ist vorhanden; besonders nützlich ist der Trend über mehrere Monate.");
+  if(rhr&&rhr<50) good.push("Der Ruhepuls ist niedrig; bei trainierten und beschwerdefreien Personen kann das zum Trainingsprofil passen.");
+
+  if(bmi){
+    if(bmi>=18.5&&bmi<25) good.push("Der BMI liegt im üblichen Referenzbereich; er sagt aber wenig über Muskel- und Fettverteilung aus.");
+    if(bmi>=30) levers.push("Körperzusammensetzung und metabolische Risikofaktoren genauer betrachten statt nur das Gewicht.");
+    if(bmi<18.5) medical.push("Niedriger BMI sollte im Kontext von Muskelmasse, Ernährung, Gewichtsverlauf und Wohlbefinden betrachtet werden.");
+  }
+
+  if(waist){
+    if(v("sex")==="m"&&waist>=102) medical.push("Der Taillenumfang erhöht die Relevanz von Blutdruck und Stoffwechselwerten.");
+    if(v("sex")==="f"&&waist>=88) medical.push("Der Taillenumfang erhöht die Relevanz von Blutdruck und Stoffwechselwerten.");
+  }
+
+  const bp=parseBP();
+  if(bp){
+    if(bp[0]>=180||bp[1]>=120) urgent.push("Der eingegebene Blutdruck ist sehr hoch. Wenn die Messung stimmt, zeitnah medizinisch abklären; bei akuten Symptomen sofort Hilfe suchen.");
+    else if(bp[0]>=140||bp[1]>=90) medical.push("Der eingegebene Blutdruck ist erhöht. Mehrere standardisierte Messungen und ärztliche Einordnung sind sinnvoll.");
+    else good.push("Der eingegebene Blutdruck liefert keinen offensichtlichen Hochdruck-Hinweis; wiederholte korrekte Messungen sind aussagekräftiger.");
+  }
+
+  const cond=low(v("conditions")),meds=low(v("meds")),sympt=low(v("symptoms"));
+  if(cond&&!cond.includes("keine")) medical.push("Bekannte Erkrankungen bei Training und Supplementen berücksichtigen.");
+  if(meds) medical.push("Supplemente auf Wechselwirkungen mit den angegebenen Medikamenten prüfen.");
+  if(sympt&&!sympt.includes("keine")) medical.push("Aktuelle Beschwerden vor deutlicher Trainingssteigerung medizinisch oder physiotherapeutisch einordnen.");
+  if(low(v("snoring")).includes("ja")) medical.push("Regelmässiges Schnarchen zusammen mit Tagesmüdigkeit oder nicht erholsamem Schlaf kann Anlass für eine Schlafapnoe-Abklärung sein.");
+
+  levers.push("Proteinversorgung und insgesamt wenig verarbeitete, pflanzenreiche Ernährung pragmatisch prüfen.");
+  levers.push("Supplemente nur dort einsetzen, wo Nutzen, Dosis und persönlicher Bedarf plausibel sind.");
+
+  if(v("alcohol")&&!low(v("alcohol")).includes("kein")&&!low(v("alcohol")).includes("nein")){
+    levers.push("Alkoholmenge als veränderbaren Faktor für Schlaf, Regeneration und langfristige Gesundheit betrachten.");
+  }
+
+  if(v("goals")) plan.push("Training gezielt an den eigenen Zielen ausrichten, statt nur mehr Umfang zu sammeln.");
+  plan.push("Wearable-Werte wie HRV, Schlafscore und VO₂max als Wochen-/Monatstrends betrachten, nicht als tägliche Bewertung.");
+  if(v("supps")) plan.push("Supplemente auf Nutzen, Dosis und mögliche Doppelungen prüfen.");
+
+  if(!medical.length){
+    medical.push("Keine Spezial-Longevity-Diagnostik aus diesen Angaben ableitbar. Bei normaler Vorsorge sind je nach Alter und Risiko Blutdruck, Lipidprofil, Blutzucker/HbA1c und Nierenfunktion häufig nützlich.");
+    medical.push("Lp(a) kann zur einmaligen kardiovaskulären Risikoeinordnung sinnvoll sein, falls noch nie bestimmt.");
+  }
+
+  const gl=$("goodList"),ll=$("leverList"),pl=$("planList"),ml=$("medicalList"),ul=$("urgentList");
+  [gl,ll,pl,ml,ul].forEach(x=>x.innerHTML="");
+  (good.length?good:["Noch zu wenige Angaben für positive Aussagen."]).slice(0,6).forEach(x=>add(gl,x));
+  levers.slice(0,5).forEach(x=>add(ll,x));
+  plan.slice(0,7).forEach(x=>add(pl,x));
+  medical.slice(0,6).forEach(x=>add(ml,x));
+  urgent.slice(0,4).forEach(x=>add(ul,x));
+
+  $("urgentBox").classList.toggle("hidden",urgent.length===0);
+  $("supplementResult").innerHTML=supplementRows(v("supps"));
+
+  let badge="Orientierung",cls="pill neutral";
+  if(urgent.length){badge="Medizinisch prüfen";cls="pill flag"}
+  else if(good.length>=4&&medical.length<=2){badge="Gute Basis";cls="pill good"}
+  else if(medical.length>=3){badge="Punkte prüfen";cls="pill watch"}
+  $("badge").textContent=badge;$("badge").className=cls;
+
+  $("results").classList.remove("hidden");
+  setTimeout(()=>$("results").scrollIntoView({behavior:"smooth",block:"start"}),100);
+}
+
+function collect(){const d={};ids.forEach(id=>d[id]=v(id));return d}
+function saveLocal(){localStorage.setItem("healthLongevityDataV1",JSON.stringify(collect()));alert("Nur auf diesem Gerät gespeichert.")}
+function loadLocal(){try{const r=localStorage.getItem("healthLongevityDataV1");if(!r)return;const d=JSON.parse(r);ids.forEach(id=>{if($(id)&&d[id]!==undefined)$(id).value=d[id]})}catch(e){}}
+function clearAll(){if(!confirm("Alle Eingaben und lokal gespeicherten Daten löschen?"))return;ids.forEach(id=>{if($(id))$(id).value=""});localStorage.removeItem("healthLongevityDataV1");$("results").classList.add("hidden")}
+
+function resultText(){
+  const lever=[...$("leverList").querySelectorAll("li")].map((x,i)=>`${i+1}. ${x.textContent}`).join("\n");
+  const plan=[...$("planList").querySelectorAll("li")].map(x=>`• ${x.textContent}`).join("\n");
+  return `Health & Longevity Snapshot
+
+BMI: ${$("bmiOut").textContent}
+VO₂max: ${$("vo2Out").textContent}
+Schlaf: ${$("sleepOut").textContent} h
+Schritte: ${$("stepsOut").textContent}
+
+Wichtigste Hebel:
+${lever}
+
+12-Wochen-Fokus:
+${plan}
+
+Orientierende Gesundheitsinformation, keine Diagnose.`;
+}
+
+async function shareResults(){
+  const text=resultText();
+  if(navigator.share){
+    try{await navigator.share({title:"Health & Longevity Snapshot",text});return}catch(e){}
+  }
+  try{await navigator.clipboard.writeText(text);alert("Ergebnis kopiert.")}catch(e){alert("Teilen ist in diesem Browser nicht verfügbar.")}
+}
+async function copyResults(){
+  try{await navigator.clipboard.writeText(resultText());alert("Ergebnis kopiert.")}catch(e){alert("Kopieren ist in diesem Browser nicht verfügbar.")}
+}
+
+$("analyzeBtn").addEventListener("click",analyze);
+$("saveBtn").addEventListener("click",saveLocal);
+$("clearBtn").addEventListener("click",clearAll);
+$("shareBtn").addEventListener("click",shareResults);
+$("copyBtn").addEventListener("click",copyResults);
+
+loadLocal();
+</script>
+</body>
+</html>
